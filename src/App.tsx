@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Preloader from './components/Preloader';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
@@ -13,6 +14,13 @@ import ContactPage from './pages/ContactPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<string>('home');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  // Handle preloader completion
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 4000); // 3s loading + 1s fade out
+    return () => clearTimeout(timer);
+  }, []);
 
   const renderCurrentPage = () => {
     switch (currentPage) {
@@ -38,15 +46,21 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header currentPage={currentPage} onPageChange={setCurrentPage} />
-      <main>
-        <AnimatePresence mode="wait">
-          {renderCurrentPage()}
-        </AnimatePresence>
-      </main>
-      <Footer onPageChange={setCurrentPage} />
-    </div>
+    <>
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <div className="min-h-screen bg-white">
+          <Header currentPage={currentPage} onPageChange={setCurrentPage} />
+          <main>
+            <AnimatePresence mode="wait">
+              {renderCurrentPage()}
+            </AnimatePresence>
+          </main>
+          <Footer onPageChange={setCurrentPage} />
+        </div>
+      )}
+    </>
   );
 }
 

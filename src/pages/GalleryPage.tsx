@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Play, Calendar, MapPin, Users, Eye, Heart, Share2, Download, X } from 'lucide-react';
 
 interface GalleryPageProps {
@@ -167,7 +168,13 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onPageChange }) => {
   };
 
   return (
-    <div className="min-h-screen py-16 bg-neutral-50">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="min-h-screen py-16 bg-neutral-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -422,7 +429,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ onPageChange }) => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
