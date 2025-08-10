@@ -15,7 +15,7 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [floatOffset, setFloatOffset] = useState({ x: 0, y: 0 });
-  // No word cycling needed, only one word is animated
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [rainDrops, setRainDrops] = useState<Array<{
     id: number;
     x: number;
@@ -26,7 +26,7 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
     column: number;
   }>>([]);
   
-  const animatedWords = ['Change'];
+  const animatedWords = ['Change', 'Impact', 'Growth', 'Progress', 'Future'];
   
   const rainIcons = React.useMemo(() => [
     Heart, Users, BookOpen, Stethoscope, Home, Lightbulb, 
@@ -55,7 +55,14 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
     return () => clearInterval(interval);
   }, []);
 
-  // No cycling needed since only one word
+  // Word cycling animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % animatedWords.length);
+    }, 3000); // Change word every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [animatedWords.length]);
 
   // Matrix rain effect
   useEffect(() => {
@@ -191,14 +198,14 @@ const HomePage: React.FC<HomePageProps> = ({ onPageChange }) => {
                   <span className="text-primary-600"> Hope</span>,
                   <br />Creating&nbsp; 
                   <motion.span 
+                    key={currentWordIndex} 
                     className="text-accent-500 inline-block"
-                    initial={{ opacity: 0, rotateX: -90 }}
-                    animate={{ opacity: 1, rotateX: 0 }}
-                    exit={{ opacity: 0, rotateX: 90 }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                    style={{ transformOrigin: "center bottom" }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
-                    {animatedWords[0]}
+                    {animatedWords[currentWordIndex]}
                   </motion.span>
                 </h1>
                 <motion.p 
