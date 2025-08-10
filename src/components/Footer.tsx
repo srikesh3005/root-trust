@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
             <div className="flex items-center space-x-3">
               <Heart className="h-8 w-8 text-accent-100" />
               <div>
-                <h3 className="text-lg font-bold">Hope Foundation Trust</h3>
+                <h3 className="text-lg font-bold">Root Lamp Trust</h3>
                 <p className="text-sm text-neutral-200">Building Better Communities</p>
               </div>
             </div>
@@ -97,7 +97,7 @@ const Footer: React.FC<FooterProps> = ({ onPageChange }) => {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-300 text-sm">
-            © 2024 Hope Foundation Trust. All rights reserved. | Building Better Communities Since 2010
+            © 2024 Root Lamp Trust. All rights reserved. | Building Better Communities Since 2010
           </p>
         </div>
       </div>

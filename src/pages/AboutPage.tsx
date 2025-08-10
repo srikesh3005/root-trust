@@ -39,7 +39,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
   ];
 
   const milestones = [
-    { year: 2010, event: 'Hope Foundation Trust established with mission to serve underserved communities' },
+    { year: 2010, event: 'Root Lamp Trust established with mission to serve underserved communities' },
     { year: 2012, event: 'First education center opened in rural Maharashtra, serving 200 children' },
     { year: 2015, event: 'Launched mobile healthcare program, reaching 50 remote villages' },
     { year: 2018, event: 'Achieved 80G tax exemption status and expanded to 5 states' },
@@ -77,7 +77,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary-800 mb-6">About Hope Foundation Trust</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-primary-800 mb-6">About Root Lamp Trust</h1>
           <p className="text-xl text-primary-700 max-w-4xl mx-auto leading-relaxed">
             Since 2010, we have been dedicated to creating sustainable positive change in underserved communities 
             across India through innovative programs in education, healthcare, and sustainable development.
@@ -90,7 +90,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onPageChange }) => {
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-primary-800">Our Story</h2>
               <p className="text-lg text-primary-700 leading-relaxed">
-                Hope Foundation Trust was born from a simple yet powerful belief: every individual deserves access to 
+                Root Lamp Trust was born from a simple yet powerful belief: every individual deserves access to 
                 quality education and healthcare, regardless of their socioeconomic background. Founded by Dr. Anita Patel 
                 after witnessing the challenges faced by rural communities during her medical practice, our organization 
                 has grown from serving a single village to impacting lives across multiple states.

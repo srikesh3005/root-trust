@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onPageChange }) => {
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onPageChange('home')}>
             <Heart className="h-8 w-8 text-primary-600" />
             <div>
-              <h1 className="text-xl font-bold text-primary-800">Hope Foundation Trust</h1>
+              <h1 className="text-xl font-bold text-primary-800">Root Lamp Trust</h1>
               <p className="text-sm text-primary-700">Building Better Communities</p>
             </div>
           </div>

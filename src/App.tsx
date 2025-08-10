@@ -22,26 +22,46 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Scroll to top when page changes
+  useEffect(() => {
+    if (!isLoading) {
+      // Small delay to allow page transition to start
+      const scrollTimer = setTimeout(() => {
+        window.scrollTo({ 
+          top: 0, 
+          behavior: 'smooth' 
+        });
+      }, 100);
+
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [currentPage, isLoading]);
+
+  // Enhanced page change handler
+  const handlePageChange = (page: string) => {
+    setCurrentPage(page);
+  };
+
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
-        return <HomePage key="home" onPageChange={setCurrentPage} />;
+        return <HomePage key="home" onPageChange={handlePageChange} />;
       case 'about':
-        return <AboutPage key="about" onPageChange={setCurrentPage} />;
+        return <AboutPage key="about" onPageChange={handlePageChange} />;
       case 'projects':
-        return <ProjectsPage key="projects" onPageChange={setCurrentPage} />;
+        return <ProjectsPage key="projects" onPageChange={handlePageChange} />;
       case 'donate':
-        return <DonatePage key="donate" onPageChange={setCurrentPage} />;
+        return <DonatePage key="donate" onPageChange={handlePageChange} />;
       case 'volunteer':
-        return <VolunteerPage key="volunteer" onPageChange={setCurrentPage} />;
+        return <VolunteerPage key="volunteer" onPageChange={handlePageChange} />;
       case 'transparency':
-        return <TransparencyPage key="transparency" onPageChange={setCurrentPage} />;
+        return <TransparencyPage key="transparency" onPageChange={handlePageChange} />;
       case 'gallery':
-        return <GalleryPage key="gallery" onPageChange={setCurrentPage} />;
+        return <GalleryPage key="gallery" onPageChange={handlePageChange} />;
       case 'contact':
-        return <ContactPage key="contact" onPageChange={setCurrentPage} />;
+        return <ContactPage key="contact" onPageChange={handlePageChange} />;
       default:
-        return <HomePage key="home" onPageChange={setCurrentPage} />;
+        return <HomePage key="home" onPageChange={handlePageChange} />;
     }
   };
 
@@ -51,13 +71,13 @@ function App() {
         <Preloader />
       ) : (
         <div className="min-h-screen bg-white">
-          <Header currentPage={currentPage} onPageChange={setCurrentPage} />
+          <Header currentPage={currentPage} onPageChange={handlePageChange} />
           <main>
             <AnimatePresence mode="wait">
               {renderCurrentPage()}
             </AnimatePresence>
           </main>
-          <Footer onPageChange={setCurrentPage} />
+          <Footer onPageChange={handlePageChange} />
         </div>
       )}
     </>
